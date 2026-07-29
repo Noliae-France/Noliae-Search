@@ -1,0 +1,20 @@
+name: Search CI
+on: {push: {branches: [main]}, pull_request: {branches: [main]}}
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check static frontend
+        run: |
+          grep -q 'NOLIAE_API_BASE' config.js.template
+          grep -q '/v1/search/' app.js
+          grep -q '#FF4D2E' styles.css
+      - name: Build image
+        run: docker build -t noliae-search .
+      - name: Smoke test
+        run: |
+          docker run -d --name search -p 8081:8080 -e NOLIAE_API_BASE=https://api.noliae.com noliae-search
+          for i in $(seq 1 15); do curl -fsS http://localhost:8081/ && break || sleep 1; done
+          curl -fsS http://localhost:8081/config.js | grep -q 'api.noliae.com'
+          docker rm -f search

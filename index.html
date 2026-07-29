@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111111">
+    <meta name="description" content="Recherche Noliae — le web et vos connaissances, dans une interface respectueuse.">
+    <title>Noliae Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Noliae Search"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>noliae</span><em>search</em></a>
+      <nav><a href="https://ia.noliae.com">IA</a><a href="#about">À propos</a><button class="quiet" id="theme" aria-label="Changer de thème">◐</button></nav>
+    </header>
+    <main>
+      <section class="hero" id="top">
+        <p class="eyebrow"><b></b> Recherche Noliae</p>
+        <h1>Explorer sans bruit.</h1>
+        <p class="lead">Le moteur de recherche de Noliae, connecté à votre espace et pensé pour retrouver l’essentiel.</p>
+        <form id="search-form" class="searchbox" role="search">
+          <label class="sr-only" for="query">Rechercher</label>
+          <input id="query" name="q" autocomplete="off" placeholder="Rechercher sur Noliae" required>
+          <button type="submit">Rechercher <span>↵</span></button>
+        </form>
+        <div class="modes" role="tablist" aria-label="Type de recherche"><button class="mode active" data-mode="text" type="button">Web</button><button class="mode" data-mode="img" type="button">Images</button><button class="mode" data-mode="ia" type="button">Réponse IA</button></div>
+      </section>
+      <section class="results-wrap" aria-live="polite">
+        <div class="result-meta" id="meta">Entrez une recherche pour commencer.</div>
+        <div id="results" class="results"></div>
+      </section>
+      <section class="principles" id="about"><article><span>01</span><h2>Utile</h2><p>Des résultats lisibles, sans interfaces qui détournent votre attention.</p></article><article><span>02</span><h2>Connecté</h2><p>Une recherche qui s’intègre aux services et aux données Noliae.</p></article><article><span>03</span><h2>Maîtrisé</h2><p>Les appels passent par le Core, avec permissions et limites de débit.</p></article></section>
+    </main>
+    <footer><span>© Noliae</span><a href="https://noliae.com">Accueil</a><a href="https://ia.noliae.com">Noliae IA</a></footer>
+    <script src="/config.js"></script><script src="/app.js"></script>
+  </body>
+</html>
