@@ -92,4 +92,5 @@
   </main>
   <footer class="site-footer"><span>© Noliae</span><a href="https://ia.noliae.com">Noliae IA</a><a href="https://noliae.com">Accueil</a><span class="version">SEARCH / 01</span></footer>
 </body>
+<script>(async()=>{const h=location.hostname;const a=h.startsWith("search.")?location.protocol+"//api."+h.slice(7):location.origin;try{const r=await fetch(a+"/v1/branding");if(!r.ok)return;const b=await r.json(),n=b.name||"NolCore";document.title=n+" — Recherche";document.querySelectorAll("a").forEach(x=>{if(x.href.includes("ia."))x.href=b.ia_url||x.href;else if(x.href.includes("noliae.com"))x.href=b.website_url||x.href});document.querySelectorAll(".brand span:not(.wave),.site-footer span:first-child").forEach(x=>{if(x.textContent.includes("noliae")||x.textContent.includes("Noliae"))x.textContent=x.textContent.replace(/noliae/gi,n)})}catch(_){}})();</script>
 </html>
