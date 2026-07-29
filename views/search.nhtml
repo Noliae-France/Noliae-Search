@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/noliae.css">
-  <style>@@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}@@keyframes scan{50%{transform:scaleX(.75);opacity:.55}}.hero>*{animation:rise .65s cubic-bezier(.2,.8,.2,1) both}.hero h1{animation-delay:.08s}.hero-copy{animation-delay:.16s}.search-form{animation-delay:.24s}.quick-links{animation-delay:.32s}.wave i:nth-child(4){animation:scan 1.6s ease-in-out infinite}.filter,.result-card,.grid article{transition:transform .2s ease,background .2s ease,border-color .2s ease}.filter:hover,.result-card:hover{transform:translateX(3px)}.grid article:hover{transform:translateY(-4px)}@@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}</style>
+  <style>@@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}@@keyframes scan{50%{transform:scaleX(.75);opacity:.55}}.hero>*{animation:rise .65s cubic-bezier(.2,.8,.2,1) both}.hero h1{animation-delay:.08s}.hero-copy{animation-delay:.16s}.search-form{animation-delay:.24s}.quick-links{animation-delay:.32s}.wave i:nth-child(4){animation:scan 1.6s ease-in-out infinite}.filter,.result-card,.grid article{transition:transform .2s ease,background .2s ease,border-color .2s ease}.filter:hover,.result-card:hover{transform:translateX(3px)}.grid article:hover{transform:translateY(-4px)}.empty-mark{width:54px;height:54px;object-fit:contain;margin-bottom:2px}@@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}</style>
 </head>
 <body>
   <header class="topbar">
@@ -70,7 +70,7 @@
         <div class="result-head"><p class="cap">Mode <strong>@mode</strong></p><span>Recherche protégée par Noliae</span></div>
         @if(query == "")
           <article class="empty-state">
-            <span class="empty-wave">▂▅█▇█▅▂</span><h2>Prêt quand vous l’êtes.</h2><p>Commencez par une idée, une page ou un sujet. Noliae organise le reste.</p>
+            <img class="empty-mark" src="/static/symbol-dark.svg" alt="" aria-hidden="true"><h2>Prêt quand vous l’êtes.</h2><p>Commencez par une idée, une page ou un sujet. Noliae organise le reste.</p>
           </article>
         @else
           <article class="result-card primary-result">
