@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#111111">
   <title>@titre — Recherche</title>
+  <meta name="description" content="Noliae Search : une recherche claire, reliée à vos services Noliae et protégée par le Core.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://noliae.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Noliae">
+  <meta property="og:title" content="Noliae Search — Explorer sans bruit">
+  <meta property="og:description" content="Une recherche claire, reliée à vos services Noliae.">
+  <meta property="og:url" content="https://noliae.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Noliae Search — Explorer sans bruit">
+  <meta name="twitter:description" content="Une recherche claire, reliée à vos services Noliae.">
+  <script type="application/ld+json">{"@@context":"https://schema.org","@@type":"WebSite","name":"Noliae Search","url":"https://noliae.com/","potentialAction":{"@@type":"SearchAction","target":"https://noliae.com/recherche?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/noliae.css">

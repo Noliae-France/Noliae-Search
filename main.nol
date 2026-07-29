@@ -14,10 +14,12 @@ fn ctrl_recherche(req: Requete, _p: Map<Text>) -> WebResultat {
 }
 
 fn ctrl_sante(_req: Requete, _p: Map<Text>) -> WebResultat { return WebResultat.WebOk(reponse_json("{\"status\":\"ok\",\"service\":\"noliae-search\",\"runtime\":\"nolc\"}")) }
+fn ctrl_robots(_req: Requete, _p: Map<Text>) -> WebResultat { return WebResultat.WebOk(reponse_avec_entete(reponse_texte("User-agent: *\nAllow: /\nSitemap: https://noliae.com/sitemap.xml\n"),"Content-Type","text/plain; charset=utf-8")) }
+fn ctrl_sitemap(_req: Requete, _p: Map<Text>) -> WebResultat { return WebResultat.WebOk(reponse_avec_entete(reponse_texte("<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><url><loc>https://noliae.com/</loc></url><url><loc>https://www.noliae.com/</loc></url></urlset>"),"Content-Type","application/xml; charset=utf-8")) }
 
 fn application(req: Requete) -> WebResultat {
     var m: List<Text> = []; var p: List<Text> = []; var h: List<Fn(Requete, Map<Text>) -> WebResultat> = []
-    route_type(m,p,h,"GET","/",ctrl_accueil); route_type(m,p,h,"GET","/recherche",ctrl_recherche); route_type(m,p,h,"GET","/api/health",ctrl_sante)
+    route_type(m,p,h,"GET","/",ctrl_accueil); route_type(m,p,h,"GET","/recherche",ctrl_recherche); route_type(m,p,h,"GET","/api/health",ctrl_sante); route_type(m,p,h,"GET","/robots.txt",ctrl_robots); route_type(m,p,h,"GET","/sitemap.xml",ctrl_sitemap)
     if starts_with(req.chemin,"/static/") { let f=servir_statique(".",req.chemin); if has(f) { return WebResultat.WebOk(reponse_avec_entete(reponse_texte(unwrap_or(f,"")),"Content-Type",type_mime(req.chemin))) } }
     return routeur_dispatch_type(m,p,h,req)
 }
