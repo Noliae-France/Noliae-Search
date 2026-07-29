@@ -42,6 +42,10 @@ Le contrôleur de recherche est le point de raccordement vers
 `/v1/search/text`, `/img` et `/ia`. Les permissions, sessions et limites de
 débit restent gérées par le Core.
 
+Le premier passage peut être complété par Brave Search côté Core, puis les URL
+sont placées dans la file du crawler et les recherches suivantes utilisent
+l’index PostgreSQL. La clé Brave reste exclusivement côté serveur.
+
 ## Développement
 
 Prérequis : le binaire `nolc` et, pour l’image, Docker.
