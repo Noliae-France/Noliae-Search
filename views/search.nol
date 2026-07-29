@@ -1,0 +1,15 @@
+fn vue_search(titre: Text, query: Text, mode: Text, message: Text) -> Text {
+    var _o = ""
+    _o += "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>"
+    _o += html_escape(titre)
+    _o += "</title><link rel=\"stylesheet\" href=\"/static/noliae.css\"></head><body><header><a class=\"brand\" href=\"/\"><span class=\"wave\">▂▅█▇█▅▂</span> noliae <b>search</b></a><nav><a href=\"https://ia.noliae.com\">IA</a><a href=\"#principes\">À propos</a></nav></header><main><section class=\"hero\"><p class=\"cap\"><i></i> Recherche Noliae</p><h1>Explorer sans bruit.</h1><p>Le moteur de recherche de Noliae, connecté à votre espace et pensé pour retrouver l’essentiel.</p><form action=\"/recherche\" method=\"get\"><input name=\"q\" value=\""
+    _o += html_escape(query)
+    _o += "\" placeholder=\"Rechercher sur Noliae\" autofocus><select name=\"mode\"><option value=\"text\">Web</option><option value=\"img\">Images</option><option value=\"ia\">Réponse IA</option></select><button>Rechercher <b>↵</b></button></form></section><section class=\"result\"><p class=\"cap\">"
+    _o += html_escape(mode)
+    _o += "</p><h2>"
+    _o += html_escape(query)
+    _o += "</h2><p>"
+    _o += html_escape(message)
+    _o += "</p></section><section id=\"principes\" class=\"grid\"><article><small>01</small><h2>Utile</h2><p>Des résultats lisibles et sans distractions.</p></article><article><small>02</small><h2>Connecté</h2><p>La recherche s’intègre aux services Noliae.</p></article><article><small>03</small><h2>Maîtrisé</h2><p>Le Core applique droits et limites de débit.</p></article></section></main><footer>© Noliae · <a href=\"https://ia.noliae.com\">Noliae IA</a></footer></body></html>\n"
+    return _o
+}

@@ -1,1 +1,0 @@
-window.NOLIAE_CONFIG = { apiBase: "${NOLIAE_API_BASE}" };

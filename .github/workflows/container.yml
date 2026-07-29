@@ -1,4 +1,4 @@
-name: Publish Search container
+name: Publish Search Nolc container
 on: {push: {branches: [main]}, workflow_dispatch: {}}
 permissions: {contents: read, packages: write}
 jobs:
