@@ -68,16 +68,13 @@
       </aside>
       <div class="result-content">
         <div class="result-head"><p class="cap">Mode <strong>@mode</strong></p><span>Recherche protégée par Noliae</span></div>
-        @if(query == "")
-          <article class="empty-state">
-            <img class="empty-mark" src="/static/symbol-dark.svg" alt="" aria-hidden="true"><h2>Prêt quand vous l’êtes.</h2><p>Commencez par une idée, une page ou un sujet. Noliae organise le reste.</p>
-          </article>
-        @else
-          <article class="result-card primary-result">
-            <small>Résultat Noliae</small><h2>@query</h2><p>@message</p><a href="#core">Ouvrir dans votre espace <span>→</span></a>
-          </article>
-          <article class="result-card"><small>Fonctionnement</small><h3>Résultats reliés au Core</h3><p>Les requêtes passent par le gateway NolCore, ses permissions et ses limites avant toute réponse.</p></article>
-        @endif
+        <div id="results-live" data-query="@query" data-mode="@mode">
+          @if(query == "")
+            <article class="empty-state"><img class="empty-mark" src="/static/symbol-dark.svg" alt="" aria-hidden="true"><h2>Recherchez ce qui compte.</h2><p>Les résultats apparaîtront ici, sans contenu inventé.</p></article>
+          @else
+            <article class="result-card"><small>Recherche en cours</small><h2>Recherche de « @query »</h2><p>Interrogation de l’index NolCore…</p></article>
+          @endif
+        </div>
       </div>
     </section>
 
@@ -92,5 +89,5 @@
   </main>
   <footer class="site-footer"><span>© Noliae</span><a href="/">Noliae IA</a><a href="/">Accueil</a><span class="version">SEARCH / 01</span></footer>
 </body>
-<script>(async()=>{const h=location.hostname;const a=h.startsWith("search.")?location.protocol+"//api."+h.slice(7):location.origin;try{const r=await fetch(a+"/v1/branding");if(!r.ok)return;const b=await r.json(),n=b.name||"NolCore";document.title=n+" — Recherche";document.querySelectorAll("a").forEach(x=>{if(x.href.includes("ia."))x.href=b.ia_url||x.href;else if(x.href.includes("noliae.com"))x.href=b.website_url||x.href});document.querySelectorAll(".brand span:not(.wave),.site-footer span:first-child").forEach(x=>{if(x.textContent.includes("noliae")||x.textContent.includes("Noliae"))x.textContent=x.textContent.replace(/noliae/gi,n)})}catch(_){}})();</script>
+<script>(async()=>{const h=location.hostname,a=h.startsWith("search.")?location.protocol+"//api."+h.slice(7):location.origin,root=document.getElementById("results-live"),esc=v=>String(v||"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));try{const r=await fetch(a+"/v1/branding"),b=r.ok?await r.json():{},n=b.name||"NolCore";document.title=n+" — Recherche";document.querySelectorAll(".brand span:not(.wave),.site-footer span:first-child").forEach(x=>{if(/noliae/i.test(x.textContent))x.textContent=x.textContent.replace(/noliae/gi,n)});const q=root.dataset.query,mode=root.dataset.mode;if(!q)return;const rep=await fetch(a+"/v1/search/"+encodeURIComponent(mode)+"/"+encodeURIComponent(q),{credentials:"include"}),data=await rep.json();if(!rep.ok){root.innerHTML="<article class='empty-state'><h2>Recherche indisponible</h2><p>"+esc(data.detail||"Veuillez réessayer.")+"</p></article>";return}const rows=Array.isArray(data)?data:[];if(!rows.length){root.innerHTML="<article class='empty-state'><h2>Aucun résultat indexé</h2><p>Cette recherche est en cours d’indexation.</p></article>";return}root.innerHTML=rows.map(x=>{const title=esc(x.title||x.url||"Résultat"),url=String(x.url||""),text=esc(x.description||x.content||""),source=esc(x.source||"web");return "<article class='result-card'><small>"+source+"</small><h2>"+title+"</h2><p>"+text.slice(0,420)+"</p>"+(url?"<a rel='noopener noreferrer' target='_blank' href='"+esc(url)+"'>Ouvrir le résultat <span>→</span></a>":"")+"</article>"}).join("")}catch(_){if(root.dataset.query)root.innerHTML="<article class='empty-state'><h2>Connexion impossible</h2><p>Le NolCore ne répond pas pour le moment.</p></article>"}})();</script>
 </html>
