@@ -71,6 +71,13 @@ kubectl apply -f deploy/k8s.yaml
 `noliae.com` et `www.noliae.com`. Le pointage DNS et les certificats TLS restent
 à configurer dans l’infrastructure qui possède le domaine.
 
+## Navigation multi-domaines
+
+Les liens vers Account, IA, Login et Register sont dérivés du hostname courant.
+Ainsi `search.beta.noliae.com` dirige vers `account.beta.noliae.com`, tandis
+que la production garde les sous-domaines de production. Aucun lien `/compte`
+local n’est utilisé.
+
 ## CI/CD
 
 Chaque push compile les vues dans l’image Ubuntu/Nolc, construit le binaire,
