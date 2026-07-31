@@ -887,8 +887,13 @@ fn reponse_new(statut: Int, statut_texte: Text, type_contenu: Text, corps: Text)
     return Reponse { statut: statut, statut_texte: statut_texte, type_contenu: type_contenu, entetes: "", corps: corps }
 }
 
+// « no-store » (pas seulement no-cache) : sans en-tete de cache explicite,
+// certains navigateurs appliquent un cache heuristique sur du HTML servi
+// sans Last-Modified/ETag et continuent d execut un JS PERIME apres un
+// deploiement (formulaires qui semblent « ne plus marcher » alors que le
+// serveur a bien la version corrigee).
 fn reponse_html(corps: Text) -> Reponse {
-    return reponse_new(200, "OK", "text/html; charset=utf-8", corps)
+    return reponse_avec_entete(reponse_new(200, "OK", "text/html; charset=utf-8", corps), "Cache-Control", "no-store, must-revalidate")
 }
 
 fn reponse_json(corps: Text) -> Reponse {
